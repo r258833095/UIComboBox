@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^btnAction)(NSString *data);
+
 @interface UIComboBox : UIView<UITableViewDataSource,UITableViewDelegate>
 
+@property(nonatomic,assign)btnAction action;
 @property (nonatomic,retain) NSArray *arData;
 @property (nonatomic,assign) CGRect rectBtn;
-@property (nonatomic,assign) int cellFontSize,cellHeight;
+@property (nonatomic,assign) int btnFontSize,cellFontSize,cellHeight;
 
 - (void)setBtnBackgroundImage:(UIImage *)image forState:(UIControlState)state;
-- (NSString*)getData;
+- (void)getData:(btnAction)sender;
 @end
