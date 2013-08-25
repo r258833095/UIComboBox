@@ -15,4 +15,5 @@
 @property (nonatomic,assign) int cellFontSize,cellHeight;
 
 - (void)setBtnBackgroundImage:(UIImage *)image forState:(UIControlState)state;
+- (NSString*)getData;
 @end
