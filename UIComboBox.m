@@ -65,6 +65,10 @@ static UITableView *tbl;
     
 }
 
+- (NSString*)getData{
+    return btn.titleLabel.text;
+}
+
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
