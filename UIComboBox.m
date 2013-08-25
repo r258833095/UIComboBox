@@ -11,8 +11,8 @@
 @implementation UIComboBox
 @synthesize rectBtn;
 @synthesize arData;
-@synthesize cellFontSize,cellHeight;
-
+@synthesize btnFontSize,cellFontSize,cellHeight;
+@synthesize action;
 static UIButton *btn;
 static UITableView *tbl;
 - (id)initWithFrame:(CGRect)frame
@@ -37,6 +37,7 @@ static UITableView *tbl;
     [btn setTitle:[arData objectAtIndex:0] forState:UIControlStateNormal];
     btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
     btn.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
+    [btn.titleLabel setFont:[UIFont systemFontOfSize:btnFontSize]];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
@@ -60,13 +61,11 @@ static UITableView *tbl;
 
 - (void)btnAction:(UIButton*)sender{
     sender.selected =! sender.selected;
-    
     tbl.hidden =! sender.selected;
-    
 }
 
-- (NSString*)getData{
-    return btn.titleLabel.text;
+- (void)getData:(btnAction)sender{
+    self.action = sender;
 }
 
 #pragma mark - Table View
@@ -108,6 +107,10 @@ static UITableView *tbl;
     [btn setTitle:[arData objectAtIndex:[indexPath row]] forState:UIControlStateNormal];
     btn.selected =! btn.selected;
     tbl.hidden =! btn.selected;
+    
+    if (self.action!=nil) {
+        self.action(btn.titleLabel.text);
+    }
 }
 
 @end
